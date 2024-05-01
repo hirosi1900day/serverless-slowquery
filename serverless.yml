@@ -8,13 +8,17 @@ provider:
   logRetentionInDays: 1
   timeout: 60
   environment:
-    KEY_SLACK_INCOMING_WEBHOOK_URL: '一旦仮の値'
-  iamRoleStatements:
-    - Effect: 'Allow'
-      Action:
-        - 'ssm:GetParameter'
-        - 'ssm:GetParameters'
-      Resource: '*'
+    KEY_SLACK_INCOMING_WEBHOOK_URL: slack
+  iam:
+    role:
+      name: custom-role-name
+      path: /custom-role-path/
+      statements:
+        - Effect: 'Allow'
+          Action:
+            - 'ssm:GetParameter'
+            - 'ssm:GetParameters'
+          Resource: '*'
 custom:
   go:
     cmd: GOARCH=amd64 GOOS=linux go build -ldflags="-s -w"
