@@ -24,7 +24,7 @@ custom:
 package:
   patterns:
     - '!./**'
-    - ./bin/**
+    - ./bootstrap
 
 functions:
   slowquery:
